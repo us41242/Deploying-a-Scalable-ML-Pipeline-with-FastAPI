@@ -1,0 +1,220 @@
+--- Performance on Categorical Slices ---
+
+Feature: workclass
+  Self-emp-inc (Count: 222)
+    Precision: 0.7500 | Recall: 0.7881 | F1: 0.7573
+  ? (Count: 363)
+    Precision: 0.5312 | Recall: 0.4722 | F1: 0.5183
+  Private (Count: 4597)
+    Precision: 0.7366 | Recall: 0.6264 | F1: 0.7116
+  Local-gov (Count: 389)
+    Precision: 0.7353 | Recall: 0.6250 | F1: 0.7102
+  Self-emp-not-inc (Count: 500)
+    Precision: 0.7845 | Recall: 0.6364 | F1: 0.7496
+  Federal-gov (Count: 195)
+    Precision: 0.7286 | Recall: 0.6711 | F1: 0.7163
+  State-gov (Count: 245)
+    Precision: 0.6567 | Recall: 0.6667 | F1: 0.6587
+  Never-worked (Count: 1)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+  Without-pay (Count: 1)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+
+Feature: education
+  Doctorate (Count: 84)
+    Precision: 0.8889 | Recall: 0.8889 | F1: 0.8889
+  Some-college (Count: 1475)
+    Precision: 0.6500 | Recall: 0.5107 | F1: 0.6164
+  Bachelors (Count: 1096)
+    Precision: 0.7424 | Recall: 0.7780 | F1: 0.7492
+  HS-grad (Count: 2120)
+    Precision: 0.5975 | Recall: 0.4159 | F1: 0.5495
+  5th-6th (Count: 51)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+  9th (Count: 106)
+    Precision: 1.0000 | Recall: 0.1429 | F1: 0.4545
+  Masters (Count: 318)
+    Precision: 0.8441 | Recall: 0.8626 | F1: 0.8477
+  Assoc-voc (Count: 274)
+    Precision: 0.8070 | Recall: 0.5412 | F1: 0.7348
+  Prof-school (Count: 114)
+    Precision: 0.8144 | Recall: 0.9518 | F1: 0.8386
+  11th (Count: 244)
+    Precision: 1.0000 | Recall: 0.2727 | F1: 0.6522
+  Assoc-acdm (Count: 191)
+    Precision: 0.7805 | Recall: 0.5818 | F1: 0.7306
+  1st-4th (Count: 28)
+    Precision: 1.0000 | Recall: 0.5000 | F1: 0.8333
+  12th (Count: 79)
+    Precision: 0.3333 | Recall: 0.2500 | F1: 0.3125
+  7th-8th (Count: 120)
+    Precision: 1.0000 | Recall: 0.0000 | F1: 0.0000
+  10th (Count: 204)
+    Precision: 1.0000 | Recall: 0.2000 | F1: 0.5556
+  Preschool (Count: 9)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+
+Feature: marital_status
+  status_Never-married (Count: 0)
+    Precision: 0.8696 | Recall: 0.4494 | F1: 0.7326
+  status_Married-civ-spouse (Count: 0)
+    Precision: 0.7254 | Recall: 0.6816 | F1: 0.7162
+  status_Divorced (Count: 0)
+    Precision: 0.7347 | Recall: 0.3495 | F1: 0.6020
+  status_Widowed (Count: 0)
+    Precision: 1.0000 | Recall: 0.4545 | F1: 0.8065
+  status_Married-spouse-absent (Count: 0)
+    Precision: 1.0000 | Recall: 0.4000 | F1: 0.7692
+  status_Separated (Count: 0)
+    Precision: 0.8571 | Recall: 0.3750 | F1: 0.6818
+  status_Married-AF-spouse (Count: 0)
+    Precision: 1.0000 | Recall: 0.0000 | F1: 0.0000
+
+Feature: occupation
+  Prof-specialty (Count: 818)
+    Precision: 0.7778 | Recall: 0.8167 | F1: 0.7853
+  ? (Count: 364)
+    Precision: 0.5312 | Recall: 0.4722 | F1: 0.5183
+  Exec-managerial (Count: 808)
+    Precision: 0.8081 | Recall: 0.7647 | F1: 0.7990
+  Craft-repair (Count: 800)
+    Precision: 0.5915 | Recall: 0.4565 | F1: 0.5585
+  Adm-clerical (Count: 819)
+    Precision: 0.6250 | Recall: 0.4878 | F1: 0.5917
+  Other-service (Count: 684)
+    Precision: 0.6667 | Recall: 0.1667 | F1: 0.4167
+  Sales (Count: 718)
+    Precision: 0.7268 | Recall: 0.6520 | F1: 0.7105
+  Tech-support (Count: 189)
+    Precision: 0.7200 | Recall: 0.6316 | F1: 0.7004
+  Machine-op-inspct (Count: 392)
+    Precision: 0.7273 | Recall: 0.3077 | F1: 0.5714
+  Transport-moving (Count: 322)
+    Precision: 0.6111 | Recall: 0.3607 | F1: 0.5366
+  Handlers-cleaners (Count: 252)
+    Precision: 0.5000 | Recall: 0.4167 | F1: 0.4808
+  Farming-fishing (Count: 203)
+    Precision: 0.7500 | Recall: 0.4286 | F1: 0.6522
+  Protective-serv (Count: 121)
+    Precision: 0.7419 | Recall: 0.5476 | F1: 0.6928
+  Priv-house-serv (Count: 20)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+  Armed-Forces (Count: 3)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+
+Feature: relationship
+  Own-child (Count: 1032)
+    Precision: 0.7500 | Recall: 0.2000 | F1: 0.4839
+  Husband (Count: 2607)
+    Precision: 0.7221 | Recall: 0.6760 | F1: 0.7124
+  Other-relative (Count: 190)
+    Precision: 1.0000 | Recall: 0.3333 | F1: 0.7143
+  Unmarried (Count: 712)
+    Precision: 0.8889 | Recall: 0.3721 | F1: 0.6957
+  Not-in-family (Count: 1636)
+    Precision: 0.8000 | Recall: 0.4121 | F1: 0.6733
+  Wife (Count: 336)
+    Precision: 0.7468 | Recall: 0.7375 | F1: 0.7449
+
+Feature: race
+  White (Count: 5533)
+    Precision: 0.7319 | Recall: 0.6447 | F1: 0.7126
+  Black (Count: 662)
+    Precision: 0.7941 | Recall: 0.5806 | F1: 0.7397
+  Asian-Pac-Islander (Count: 200)
+    Precision: 0.6531 | Recall: 0.6154 | F1: 0.6452
+  Amer-Indian-Eskimo (Count: 73)
+    Precision: 0.6667 | Recall: 0.4444 | F1: 0.6061
+  Other (Count: 45)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+
+Feature: sex
+  Male (Count: 4355)
+    Precision: 0.7274 | Recall: 0.6432 | F1: 0.7088
+  Female (Count: 2158)
+    Precision: 0.7638 | Recall: 0.6204 | F1: 0.7301
+
+Feature: native_country
+  country_United-States (Count: 0)
+    Precision: 0.7372 | Recall: 0.6380 | F1: 0.7150
+  country_Thailand (Count: 0)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+  country_China (Count: 0)
+    Precision: 0.8000 | Recall: 1.0000 | F1: 0.8333
+  country_Nicaragua (Count: 0)
+    Precision: 1.0000 | Recall: 0.0000 | F1: 0.0000
+  country_Mexico (Count: 0)
+    Precision: 0.5000 | Recall: 0.3333 | F1: 0.4545
+  country_Canada (Count: 0)
+    Precision: 0.2500 | Recall: 0.2000 | F1: 0.2381
+  country_South (Count: 0)
+    Precision: 1.0000 | Recall: 0.0000 | F1: 0.0000
+  country_? (Count: 0)
+    Precision: 0.7297 | Recall: 0.8438 | F1: 0.7500
+  country_India (Count: 0)
+    Precision: 0.7000 | Recall: 1.0000 | F1: 0.7447
+  country_Italy (Count: 0)
+    Precision: 1.0000 | Recall: 0.6250 | F1: 0.8929
+  country_Portugal (Count: 0)
+    Precision: 1.0000 | Recall: 0.0000 | F1: 0.0000
+  country_Vietnam (Count: 0)
+    Precision: 1.0000 | Recall: 0.0000 | F1: 0.0000
+  country_Puerto-Rico (Count: 0)
+    Precision: 0.6000 | Recall: 0.7500 | F1: 0.6250
+  country_Dominican-Republic (Count: 0)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+  country_El-Salvador (Count: 0)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+  country_Germany (Count: 0)
+    Precision: 0.6667 | Recall: 0.5714 | F1: 0.6452
+  country_Philippines (Count: 0)
+    Precision: 0.6667 | Recall: 0.6667 | F1: 0.6667
+  country_England (Count: 0)
+    Precision: 0.7500 | Recall: 0.4286 | F1: 0.6522
+  country_Yugoslavia (Count: 0)
+    Precision: 1.0000 | Recall: 0.5000 | F1: 0.8333
+  country_Poland (Count: 0)
+    Precision: 0.3333 | Recall: 1.0000 | F1: 0.3846
+  country_Jamaica (Count: 0)
+    Precision: 0.0000 | Recall: 1.0000 | F1: 0.0000
+  country_Outlying-US(Guam-USVI-etc) (Count: 0)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+  country_Scotland (Count: 0)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+  country_Cambodia (Count: 0)
+    Precision: 0.5000 | Recall: 1.0000 | F1: 0.5556
+  country_Iran (Count: 0)
+    Precision: 0.2500 | Recall: 0.3333 | F1: 0.2632
+  country_Columbia (Count: 0)
+    Precision: 0.0000 | Recall: 1.0000 | F1: 0.0000
+  country_Haiti (Count: 0)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+  country_Guatemala (Count: 0)
+    Precision: 1.0000 | Recall: 0.5000 | F1: 0.8333
+  country_Taiwan (Count: 0)
+    Precision: 0.6667 | Recall: 0.6667 | F1: 0.6667
+  country_Ecuador (Count: 0)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+  country_Cuba (Count: 0)
+    Precision: 1.0000 | Recall: 0.7500 | F1: 0.9375
+  country_Greece (Count: 0)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+  country_Japan (Count: 0)
+    Precision: 0.8333 | Recall: 0.7143 | F1: 0.8065
+  country_France (Count: 0)
+    Precision: 0.0000 | Recall: 1.0000 | F1: 0.0000
+  country_Hungary (Count: 0)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+  country_Honduras (Count: 0)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+  country_Trinadad&Tobago (Count: 0)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+  country_Peru (Count: 0)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+  country_Hong (Count: 0)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+  country_Ireland (Count: 0)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+  country_Laos (Count: 0)
+    Precision: 1.0000 | Recall: 1.0000 | F1: 1.0000
+
