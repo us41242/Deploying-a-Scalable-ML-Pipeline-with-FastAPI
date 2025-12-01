@@ -1,7 +1,8 @@
 import pickle
 from sklearn.metrics import fbeta_score, precision_score, recall_score
-from sklearn.ensemble import RandomForestClassifier # A good general-purpose classifier
+from sklearn.ensemble import RandomForestClassifier
 import pandas as pd
+from ml.data import process_data 
 
 
 # Optional: implement hyperparameter tuning.

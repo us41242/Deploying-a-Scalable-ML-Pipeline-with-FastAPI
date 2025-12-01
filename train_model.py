@@ -6,9 +6,9 @@ import sys
 # Add the parent directory to the path to allow imports from ml/
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from ml.data import process_data
+from ml.data import process_data  # noqa: E402
 from ml.model import train_model, inference, compute_model_metrics, \
-                     performance_on_categorical_slice, save_model, load_model
+                     performance_on_categorical_slice, save_model, load_model  # noqa: E402
 
 # Define paths for saving/loading models
 MODEL_PATH = "model/model.pkl"
