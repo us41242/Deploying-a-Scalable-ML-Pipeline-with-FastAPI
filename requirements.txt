@@ -153,7 +153,7 @@ rfc3339-validator
 rfc3986-validator
 rpds-py
 rsa
-scikit-learn
+scikit-learn==1.5.1
 scipy==1.10.1
 Send2Trash
 sentry-sdk==2.43.0
