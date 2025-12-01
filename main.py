@@ -5,6 +5,7 @@ from pydantic import BaseModel, Field
 from ml.data import apply_label, process_data
 from ml.model import inference, load_model
 
+
 # DO NOT MODIFY
 class Data(BaseModel):
     age: int = Field(..., example=37)
@@ -24,10 +25,12 @@ class Data(BaseModel):
     hours_per_week: int = Field(..., example=40, alias="hours-per-week")
     native_country: str = Field(..., example="United-States", alias="native-country")
 
-path = None  # TODO: enter the path for the saved encoder
+
+# Define paths to the saved model components
+path = "model/encoder.pkl"
 encoder = load_model(path)
 
-path = None  # TODO: enter the path for the saved model
+path = "model/model.pkl"
 model = load_model(path)
 
 # Create a RESTful API using FastAPI
@@ -63,13 +66,15 @@ async def post_inference(data: Data):
         "native-country",
     ]
 
+    # Process the data with training=False to use the loaded encoder
     data_processed, _, _, _ = process_data(
         data,
         categorical_features=cat_features,
         training=False,
         encoder=encoder,
-        lb=None  # Not needed for inference as we don't have labels
+        lb=None  # Not needed for inference
     )
 
+    # Run inference using the loaded model
     _inference = inference(model, data_processed)
     return {"result": apply_label(_inference)}
