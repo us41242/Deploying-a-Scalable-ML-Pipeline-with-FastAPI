@@ -175,7 +175,7 @@ def performance_on_categorical_slice(model, data, categorical_feature, label_col
 
         # Let's use a common pattern where `data` is the raw dataframe.
         # We need the `process_data` function. Add `from ml.data import process_data` at the top.
-        from ml.data import process_data # Assuming this is available and handles encoding
+        # Assuming this is available and handles encoding
 
         # The `process_data` function likely needs the full set of categorical features
         # that were used during training.
