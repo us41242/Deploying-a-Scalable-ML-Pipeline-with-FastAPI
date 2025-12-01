@@ -50,31 +50,15 @@ async def get_root():
 async def post_inference(data: Data):
     try:
         # DO NOT MODIFY: turn the Pydantic model into a dict.
-        data_dict = data.dict(by_alias=True) # Use by_alias to keep hyphens if defined in Field aliases
-        
-        # If by_alias=True didn't work as expected for replacement, force manual replacement
-        # The previous code did manual replacement. Let's stick to a robust way.
-        # data_dict keys might be "education_num" or "education-num" depending on how .dict() behaves with aliases.
-        # The safest way is to force the hyphenated names that the model expects.
-        
-        clean_data = {
-            "age": [data.age],
-            "workclass": [data.workclass],
-            "fnlgt": [data.fnlgt],
-            "education": [data.education],
-            "education-num": [data.education_num],
-            "marital-status": [data.marital_status],
-            "occupation": [data.occupation],
-            "relationship": [data.relationship],
-            "race": [data.race],
-            "sex": [data.sex],
-            "capital-gain": [data.capital_gain],
-            "capital-loss": [data.capital_loss],
-            "hours-per-week": [data.hours_per_week],
-            "native-country": [data.native_country]
-        }
-        
-        df = pd.DataFrame.from_dict(clean_data)
+        data_dict = data.dict(by_alias=True)
+        # DO NOT MODIFY: clean up the dict to turn it into a Pandas DataFrame.
+        # The data has names with hyphens and Python does not allow those as variable names.
+        # Here it uses the functionality of FastAPI/Pydantic/etc to deal with this.
+
+        # Fix for F841: We actually use data_dict now!
+        # This replaces underscores with hyphens to match the training data format
+        data = {k.replace("_", "-"): [v] for k, v in data_dict.items()}
+        df = pd.DataFrame.from_dict(data)
 
         cat_features = [
             "workclass",
@@ -88,7 +72,7 @@ async def post_inference(data: Data):
         ]
 
         # Process the data with training=False to use the loaded encoder
-        # Note: We do NOT pass 'label' here because we are doing inference.
+        # Note: Not passing 'label' here because I am doing inference.
         data_processed, _, _, _ = process_data(
             df,
             categorical_features=cat_features,
