@@ -1,6 +1,8 @@
 import pandas as pd
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
+import os
+import traceback
 
 from ml.data import apply_label, process_data
 from ml.model import inference, load_model
@@ -27,11 +29,11 @@ class Data(BaseModel):
 
 
 # Define paths to the saved model components
-path = "model/encoder.pkl"
-encoder = load_model(path)
+path_encoder = "model/encoder.pkl"
+encoder = load_model(path_encoder)
 
-path = "model/model.pkl"
-model = load_model(path)
+path_model = "model/model.pkl"
+model = load_model(path_model)
 
 # Create a RESTful API using FastAPI
 app = FastAPI()
@@ -47,34 +49,59 @@ async def get_root():
 # Create a POST on a different path that does model inference
 @app.post("/data/")
 async def post_inference(data: Data):
-    # DO NOT MODIFY: turn the Pydantic model into a dict.
-    data_dict = data.dict()
-    # DO NOT MODIFY: clean up the dict to turn it into a Pandas DataFrame.
-    # The data has names with hyphens and Python does not allow those as variable names.
-    # Here it uses the functionality of FastAPI/Pydantic/etc to deal with this.
-    data = {k.replace("_", "-"): [v] for k, v in data_dict.items()}
-    data = pd.DataFrame.from_dict(data)
+    try:
+        # DO NOT MODIFY: turn the Pydantic model into a dict.
+        data_dict = data.dict(by_alias=True) # Use by_alias to keep hyphens if defined in Field aliases
+        
+        # If by_alias=True didn't work as expected for replacement, force manual replacement
+        # The previous code did manual replacement. Let's stick to a robust way.
+        # data_dict keys might be "education_num" or "education-num" depending on how .dict() behaves with aliases.
+        # The safest way is to force the hyphenated names that the model expects.
+        
+        clean_data = {
+            "age": [data.age],
+            "workclass": [data.workclass],
+            "fnlgt": [data.fnlgt],
+            "education": [data.education],
+            "education-num": [data.education_num],
+            "marital-status": [data.marital_status],
+            "occupation": [data.occupation],
+            "relationship": [data.relationship],
+            "race": [data.race],
+            "sex": [data.sex],
+            "capital-gain": [data.capital_gain],
+            "capital-loss": [data.capital_loss],
+            "hours-per-week": [data.hours_per_week],
+            "native-country": [data.native_country]
+        }
+        
+        df = pd.DataFrame.from_dict(clean_data)
 
-    cat_features = [
-        "workclass",
-        "education",
-        "marital-status",
-        "occupation",
-        "relationship",
-        "race",
-        "sex",
-        "native-country",
-    ]
+        cat_features = [
+            "workclass",
+            "education",
+            "marital-status",
+            "occupation",
+            "relationship",
+            "race",
+            "sex",
+            "native-country",
+        ]
 
-    # Process the data with training=False to use the loaded encoder
-    data_processed, _, _, _ = process_data(
-        data,
-        categorical_features=cat_features,
-        training=False,
-        encoder=encoder,
-        lb=None  # Not needed for inference
-    )
+        # Process the data with training=False to use the loaded encoder
+        # Note: We do NOT pass 'label' here because we are doing inference.
+        data_processed, _, _, _ = process_data(
+            df,
+            categorical_features=cat_features,
+            training=False,
+            encoder=encoder,
+            lb=None  # Not needed for inference
+        )
 
-    # Run inference using the loaded model
-    _inference = inference(model, data_processed)
-    return {"result": apply_label(_inference)}
+        # Run inference using the loaded model
+        _inference = inference(model, data_processed)
+        return {"result": apply_label(_inference)}
+    except Exception as e:
+        # This will print the error to the terminal running uvicorn
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=str(e))
