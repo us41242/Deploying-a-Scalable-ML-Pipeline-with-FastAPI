@@ -1,9 +1,9 @@
-import pytest # noqa: F401
+import pytest  # noqa: F401
 import pandas as pd
-import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from ml.data import process_data
 from ml.model import train_model, inference
+
 
 # Fixture to create a small sample dataset for testing
 @pytest.fixture
@@ -30,6 +30,7 @@ def data():
     })
     return df
 
+
 def test_process_data_shape(data):
     """
     Test 1: Check if process_data returns the correct number of rows.
@@ -38,18 +39,19 @@ def test_process_data_shape(data):
         'workclass', 'education', 'marital-status', 'occupation',
         'relationship', 'race', 'sex', 'native-country'
     ]
-    
+
     # Process the data
     X, y, _, _ = process_data(
-        data, 
-        categorical_features=cat_features, 
-        label='salary', 
+        data,
+        categorical_features=cat_features,
+        label='salary',
         training=True
     )
-    
+
     # Assertions
     assert X.shape[0] == data.shape[0]
     assert len(y) == data.shape[0]
+
 
 def test_train_model_type(data):
     """
@@ -59,18 +61,19 @@ def test_train_model_type(data):
         'workclass', 'education', 'marital-status', 'occupation',
         'relationship', 'race', 'sex', 'native-country'
     ]
-    
+
     X, y, _, _ = process_data(
-        data, 
-        categorical_features=cat_features, 
-        label='salary', 
+        data,
+        categorical_features=cat_features,
+        label='salary',
         training=True
     )
-    
+
     model = train_model(X, y)
-    
+
     # Assertion
     assert isinstance(model, RandomForestClassifier)
+
 
 def test_inference_shape(data):
     """
@@ -80,16 +83,16 @@ def test_inference_shape(data):
         'workclass', 'education', 'marital-status', 'occupation',
         'relationship', 'race', 'sex', 'native-country'
     ]
-    
+
     X, y, _, _ = process_data(
-        data, 
-        categorical_features=cat_features, 
-        label='salary', 
+        data,
+        categorical_features=cat_features,
+        label='salary',
         training=True
     )
     model = train_model(X, y)
-    
+
     preds = inference(model, X)
-    
+
     # Assertion
     assert len(preds) == len(X)
